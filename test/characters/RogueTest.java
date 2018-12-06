@@ -29,7 +29,7 @@ class RogueTest {
 
         Rogue rogue = new Rogue("Joueur 1", 10, 0, 10, 0);
         assertNotNull(rogue);
-        assert (rogue.getLife() == 50);
+        assert (rogue.getVitality() == 50);
         assertEquals("Furtif je suis le Rôdeur Joueur 1 au niveau 10 je possède 50 de vitalité, 0 de force, 10 d'agilité et 0 d'intelligence !\n", outContent.toString().replace("\r\n", "\n"));
     }
 
@@ -38,8 +38,8 @@ class RogueTest {
         Rogue rogue = new Rogue("Joueur 1", 10, 0, 10, 0);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         rogue.basicAttack(warrior2);
-        assertTrue(rogue.getLife() == 50);
-        assertTrue(warrior2.getLife() == 40);
+        assertTrue(rogue.getVitality() == 50);
+        assertTrue(warrior2.getVitality() == 40);
     }
 
     @Test
@@ -57,7 +57,7 @@ class RogueTest {
         Rogue rogue = new Rogue("Joueur 1", 10, 0, 10, 0);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         rogue.specialAttack(warrior2);
-        assertTrue(rogue.getDexterity() == 15);
+        assertTrue(rogue.getAgility() == 15);
     }
 
     @Test

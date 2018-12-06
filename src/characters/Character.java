@@ -1,26 +1,20 @@
 package characters;
 
-import exception.CharacterCreationException;
-
 public class Character {
     private String name;
     private int level;
-    private int life;
+    private int vitality;
     private int strength;
-    private int dexterity;
+    private int agility;
     private int intellect;
 
-    public Character(String name,int level, int strength, int dexterity, int intellect) {
-        //Test on creation if the statictics match the character's level
-        if (strength+dexterity+intellect!=level){
-            System.out.println("La valeur cumulée de vos statistiques de force, agilité et endurant ne correspondent pas avec votre niveau");
-            throw new CharacterCreationException();
-        }
+    public Character(String name, int level, int strength, int agility, int intellect) {
+
         this.name=name;
         this.level = level;
-        this.life = level*5;
+        this.vitality = level * 5;
         this.strength = strength;
-        this.dexterity = dexterity;
+        this.agility = agility;
         this.intellect = intellect;
 
     }
@@ -45,16 +39,16 @@ public class Character {
         return level;
     }
 
-    public int getLife() {
-        return life;
+    public int getVitality() {
+        return vitality;
     }
 
     public int getStrength() {
         return strength;
     }
 
-    public int getDexterity() {
-        return dexterity;
+    public void setVitality(int vitality) {
+        this.vitality = vitality;
     }
 
     public int getIntellect() {
@@ -69,16 +63,16 @@ public class Character {
         this.level = level;
     }
 
-    public void setLife(int life) {
-        this.life = life;
+    public int getAgility() {
+        return agility;
     }
 
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
+    public void setAgility(int agility) {
+        this.agility = agility;
     }
 
     public void setIntellect(int intellect) {

@@ -30,7 +30,7 @@ class WarriorTest {
 
         Warrior warrior = new Warrior("Joueur 1", 10, 10, 0, 0);
         assertNotNull(warrior);
-        assert (warrior.getLife() == 50);
+        assert (warrior.getVitality() == 50);
         assertEquals("Woarg je suis le Guerrier Joueur 1 au niveau 10 je possède 50 de vitalité, 10 de force, 0 d'agilité et 0 d'intelligence !\n", outContent.toString().replace("\r\n", "\n"));
     }
 
@@ -39,8 +39,8 @@ class WarriorTest {
         Warrior warrior1 = new Warrior("Joueur 1", 10, 10, 0, 0);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         warrior1.basicAttack(warrior2);
-        assertTrue(warrior1.getLife()==50);
-        assertTrue(warrior2.getLife()==40);
+        assertTrue(warrior1.getVitality() == 50);
+        assertTrue(warrior2.getVitality() == 40);
     }
     @Test
     public void Given_basicAttack_When_attackPhase_Then_okTextResults() {
@@ -57,8 +57,8 @@ class WarriorTest {
         Warrior warrior1 = new Warrior("Joueur 1", 10, 10, 0, 0);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         warrior1.specialAttack(warrior2);
-        assertTrue(warrior1.getLife()==45);
-        assertTrue(warrior2.getLife()==30);
+        assertTrue(warrior1.getVitality() == 45);
+        assertTrue(warrior2.getVitality() == 30);
     }
     @Test
     public void Given_specialAttack_When_attackPhase_Then_okTextResults() {

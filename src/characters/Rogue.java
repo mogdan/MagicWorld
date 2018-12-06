@@ -1,10 +1,10 @@
 package characters;
 
 public class Rogue extends Character {
-    public Rogue(String name, int level, int strength, int dexterity, int intellect) {
-        super(name, level, strength, dexterity, intellect);
+    public Rogue(String name, int level, int strength, int agility, int intellect) {
+        super(name, level, strength, agility, intellect);
         System.out.println("Furtif je suis le Rôdeur " + name + " au niveau " + level + " je possède "
-                + getLife() + " de vitalité, " + strength + " de force, " + dexterity + " d'agilité et "
+                + getVitality() + " de vitalité, " + strength + " de force, " + agility + " d'agilité et "
                 + intellect + " d'intelligence !");
     }
 
@@ -22,8 +22,8 @@ public class Rogue extends Character {
     @Override
     public void basicAttack(Character player2) {
         String basicAttackName = "Tir à l'Arc";
-        int damage = this.getDexterity();
-        player2.setLife(player2.getLife() - damage);
+        int damage = this.getAgility();
+        player2.setVitality(player2.getVitality() - damage);
         System.out.println(getName() + " utilise " + basicAttackName + " et inflige " + damage + " dommages.");
         System.out.println(player2.getName() + " perd " + damage + " points de vie");
     }
@@ -37,8 +37,8 @@ public class Rogue extends Character {
     public void specialAttack(Character player2) {
         String specialAttackName = "Concentration";
         int dextStatModifier = getLevel() / 2;
-        setDexterity(getDexterity() + dextStatModifier);
-        int dextModified = getDexterity();
+        setAgility(getAgility() + dextStatModifier);
+        int dextModified = getAgility();
         System.out.println(getName() + " utilise " + specialAttackName + " et passe à " + dextModified + " en agilité (+" + dextStatModifier + ").");
     }
 

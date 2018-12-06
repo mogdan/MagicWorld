@@ -30,7 +30,7 @@ class MageTest {
 
         Mage mage = new Mage("Joueur 1", 10, 0, 0, 10);
         assertNotNull(mage);
-        assert (mage.getLife() == 50);
+        assert (mage.getVitality() == 50);
         assertEquals("Abracadabra je suis le Mage Joueur 1 au niveau 10 je possède 50 de vitalité, 0 de force, 0 d'agilité et 10 d'intelligence !\n", outContent.toString().replace("\r\n", "\n"));
     }
 
@@ -39,8 +39,8 @@ class MageTest {
         Mage mage = new Mage("Joueur 1", 10, 0, 0, 10);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         mage.basicAttack(warrior2);
-        assertTrue(mage.getLife() == 50);
-        assertTrue(warrior2.getLife() == 40);
+        assertTrue(mage.getVitality() == 50);
+        assertTrue(warrior2.getVitality() == 40);
     }
 
     @Test
@@ -57,10 +57,10 @@ class MageTest {
     public void Given_specialAttack_When_attackPhase_Then_okOutputResults() {
         Mage mage = new Mage("Joueur 1", 10, 0, 0, 10);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
-        mage.setLife(mage.getLife() - 40);
+        mage.setVitality(mage.getVitality() - 40);
         mage.specialAttack(warrior2);
-        assertTrue(mage.getLife() == 30);
-        assertTrue(warrior2.getLife() == 50);
+        assertTrue(mage.getVitality() == 30);
+        assertTrue(warrior2.getVitality() == 50);
     }
 
     @Test

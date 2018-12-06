@@ -1,10 +1,10 @@
 package characters;
 
 public class Mage extends Character {
-    public Mage(String name, int level, int strength, int dexterity, int intellect) {
-        super(name, level, strength, dexterity, intellect);
+    public Mage(String name, int level, int strength, int agility, int intellect) {
+        super(name, level, strength, agility, intellect);
         System.out.println("Abracadabra je suis le Mage " + name + " au niveau " + level + " je possède "
-                + getLife() + " de vitalité, " + strength + " de force, " + dexterity + " d'agilité et "
+                + getVitality() + " de vitalité, " + strength + " de force, " + agility + " d'agilité et "
                 + intellect + " d'intelligence !");
     }
 
@@ -18,7 +18,7 @@ public class Mage extends Character {
     public void basicAttack(Character player2) {
         String basicAttackName = "Boule de Feu";
         int damage = this.getIntellect();
-        player2.setLife(player2.getLife() - damage);
+        player2.setVitality(player2.getVitality() - damage);
         System.out.println(getName() + " utilise " + basicAttackName + " et inflige " + damage + " dommages.");
         System.out.println(player2.getName() + " perd " + damage + " points de vie");
     }
@@ -32,7 +32,7 @@ public class Mage extends Character {
     public void specialAttack(Character player2) {
         String specialAttackName = "Soin";
         int soin = getIntellect() * 2;
-        setLife(getLife() + soin);
+        setVitality(getVitality() + soin);
         System.out.println(getName() + " utilise " + specialAttackName + " et gagne " + soin + " en vitalité.");
     }
 
