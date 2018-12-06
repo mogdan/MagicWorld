@@ -4,7 +4,6 @@ import characters.Character;
 import characters.Mage;
 import characters.Rogue;
 import characters.Warrior;
-import exception.CharacterCreationException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,11 +14,10 @@ public class Game {
     Character[] players = new Character[2];
 
     /**
-     * Game initializer
+     * Game initializer - Characters creation
      *
-     * @throws CharacterCreationException
      */
-    public void startGame() throws CharacterCreationException {
+    public void startGame() {
         System.out.println("**********************************************************************");
         System.out.println("**********************************************************************");
         System.out.println("Bienvenue à MagicWorld! Le jeu de combat épique!");
@@ -42,8 +40,14 @@ public class Game {
                 strengthChoice = statSelection(1);
                 agilityChoice = statSelection(2);
                 intellectChoice = statSelection(3);
-                if (strengthChoice + agilityChoice + intellectChoice != levelChoice)
+                int totalStats = strengthChoice + agilityChoice + intellectChoice;
+                if (totalStats != levelChoice) {
                     correctStatSelection = false;
+                    System.out.println("************************************************************************************************************************");
+                    System.out.println("La somme des statistiques (" + totalStats + ") ne correspond pas avec le niveau (" + levelChoice + ") du personnage. Veuillez recommencer le choix des statistiques");
+                } else {
+                    correctStatSelection = true;
+                }
             } while (!correctStatSelection);
             players[i] = characterCreation(classChoice, playerName, levelChoice, strengthChoice, agilityChoice, intellectChoice);
         }
@@ -55,11 +59,11 @@ public class Game {
      * @return the class selected (1:Warrior, 2:Rogue, 3:Mage)
      */
     public int characterSelection() {
-        boolean goodInput = true;
+        boolean goodInput;
         int classChoice = 0;
-        System.out.println("Veuillez choisir la classe de personnage du Joueur 1 (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
         do {
             try {
+                System.out.println("Veuillez choisir la classe de personnage du Joueur 1 (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
                 classChoice = sc.nextInt();
                 goodInput = (classChoice >= 1 && classChoice <= 3);
             } catch (InputMismatchException e) {
@@ -77,26 +81,37 @@ public class Game {
      * @return value of the stat returned
      */
     public int statSelection(int statType) {
-        boolean goodInput = true;
+        boolean goodInput;
         int statValue = 0;
         String[] questions = new String[4];
         questions[0] = "Niveau du personnage?";
         questions[1] = "Force du personnage?";
         questions[2] = "Agilité du personnage?";
         questions[3] = "Intelligence du personnage?";
-        System.out.println(questions[statType]);
         do {
             try {
+                System.out.println(questions[statType]);
                 statValue = sc.nextInt();
+                goodInput = (statValue >= 0);
             } catch (InputMismatchException e) {
-                sc.nextInt();
+                sc.next();
                 goodInput = false;
             }
         } while (!goodInput);
         return statValue;
     }
 
-
+    /**
+     * Character constructor for gameStart
+     *
+     * @param classChoice     class selected by player
+     * @param playerName      auto increment class name for player
+     * @param levelChoice     level selected by player
+     * @param strengthChoice  strength selected by player
+     * @param agilityChoice   agility selected by player
+     * @param intellectChoice intellect selected by player
+     * @return Character for player
+     */
     public Character characterCreation(int classChoice, String playerName, int levelChoice, int strengthChoice, int agilityChoice, int intellectChoice) {
         if (classChoice == 1) {
             Warrior warrior = new Warrior(playerName, levelChoice, strengthChoice, agilityChoice, intellectChoice);
@@ -108,6 +123,33 @@ public class Game {
             Mage mage = new Mage(playerName, levelChoice, strengthChoice, agilityChoice, intellectChoice);
             return mage;
         } else return null;
+    }
+
+    /**
+     * Combat phase for active Player
+     *
+     * @param activePlayer  Player on the offensive side
+     * @param passivePlayer Player on the defensive side
+     */
+    public void combatPhase(Character activePlayer, Character passivePlayer) {
+        boolean goodInput;
+        int attackChoice = 0;
+        do {
+            try {
+                System.out.println(activePlayer.getName() + " (" + activePlayer.getVitality() + " Vitalité) veuillez" +
+                        "choisir votre action ( 1: Attaque Basique , 2: Attaque Spéciale )");
+                attackChoice = sc.nextInt();
+                goodInput = (attackChoice == 1 || attackChoice == 2);
+            } catch (InputMismatchException e) {
+                System.out.println("Veuillez choisir une attaque parmi celle proposée!");
+                goodInput = false;
+            }
+        } while (!goodInput);
+        if (attackChoice == 1)
+            activePlayer.basicAttack(passivePlayer);
+        else {
+            activePlayer.specialAttack(passivePlayer);
+        }
     }
 }
 
