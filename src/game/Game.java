@@ -19,22 +19,17 @@ public class Game {
      *
      */
     public void startGame() {
-        System.out.println("**********************************************************************");
-        System.out.println("**********************************************************************");
         System.out.println("Bienvenue à MagicWorld! Le jeu de combat épique!");
         System.out.println("**********************************************************************");
-
-        System.out.println("**********************************************************************");
-        System.out.println("Création des personnages");
-
         for (int i = 0; i < players.length; i++) {
             int classChoice;
             int levelChoice;
             int strengthChoice;
             int agilityChoice;
             int intellectChoice;
-            boolean correctStatSelection = true;
+            boolean correctStatSelection;
             String playerName = "Joueur " + (i + 1);
+            System.out.println("Création du personnage du " + playerName);
             classChoice = characterSelection();
             do {
                 levelChoice = statSelection(0);
@@ -44,7 +39,6 @@ public class Game {
                 int totalStats = strengthChoice + agilityChoice + intellectChoice;
                 if (totalStats != levelChoice) {
                     correctStatSelection = false;
-                    System.out.println("************************************************************************************************************************");
                     System.out.println("La somme des statistiques (" + totalStats + ") ne correspond pas avec le niveau (" + levelChoice + ") du personnage. Veuillez recommencer le choix des statistiques");
                 } else {
                     correctStatSelection = true;
@@ -93,7 +87,7 @@ public class Game {
             try {
                 System.out.println(questions[statType]);
                 statValue = sc.nextInt();
-                goodInput = (statValue >= 0);
+                goodInput = (statValue >= 0 && statValue <= 100);
             } catch (InputMismatchException e) {
                 sc.next();
                 goodInput = false;
