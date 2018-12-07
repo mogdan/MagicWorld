@@ -12,6 +12,7 @@ public class Game {
 
     Scanner sc = new Scanner(System.in);
     Character[] players = new Character[2];
+    Character loser;
 
     /**
      * Game initializer - Characters creation
@@ -151,6 +152,35 @@ public class Game {
             activePlayer.specialAttack(passivePlayer);
         }
     }
+
+    /**
+     * Method to play all turns and switch active/passive player. It stops when one player is dead
+     * and return the loser on terminal
+     */
+    public void doTurn() {
+        int activePlayer = 0;
+        int passivePlayer = 1;
+        boolean hasLoser = false;
+        do {
+            combatPhase(players[activePlayer], players[passivePlayer]);
+            int switchRole = passivePlayer;
+            passivePlayer = activePlayer;
+            activePlayer = switchRole;
+            if (players[activePlayer].isDead()) {
+                System.out.println(players[activePlayer].getName() + " a perdu!");
+                hasLoser = true;
+            }
+            if (players[passivePlayer].isDead()) {
+                System.out.println(players[passivePlayer].getName() + " a perdu!");
+                hasLoser = true;
+            }
+        }
+        while (!hasLoser);
+
+    }
+
 }
+
+
 
 

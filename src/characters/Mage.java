@@ -21,6 +21,10 @@ public class Mage extends Character {
         player2.setVitality(player2.getVitality() - damage);
         System.out.println(getName() + " utilise " + basicAttackName + " et inflige " + damage + " dommages.");
         System.out.println(player2.getName() + " perd " + damage + " points de vie");
+        if (damage >= player2.getVitality()) {
+            player2.setDead(true);
+            System.out.println(player2.getName() + " est mort");
+        }
     }
 
     /**
@@ -32,8 +36,11 @@ public class Mage extends Character {
     public void specialAttack(Character player2) {
         String specialAttackName = "Soin";
         int soin = getIntellect() * 2;
+        if (soin + getVitality() > getLevel() * 5)
+            soin = 50 - getVitality();
         setVitality(getVitality() + soin);
         System.out.println(getName() + " utilise " + specialAttackName + " et gagne " + soin + " en vitalité.");
+
     }
 
 }

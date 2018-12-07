@@ -53,7 +53,7 @@ class WarriorTest {
     }
 
     @Test
-    public void Given_specialAttack_When_attackPhase_Then_okDmgeResults() {
+    public void Given_specialAttack_When_attackPhase_Then_okDmgeResults() t {
         Warrior warrior1 = new Warrior("Joueur 1", 10, 10, 0, 0);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         warrior1.specialAttack(warrior2);
@@ -69,6 +69,19 @@ class WarriorTest {
         assertEquals("Joueur 1 utilise Coup de Rage et inflige 20 dommages.",output[2]);
         assertEquals("Joueur 2 perd 20 points de vie",output[3]);
         assertEquals("Joueur 1 perd 5 points de vie",output[4]);
+    }
+
+    @Test
+    public void Given_lethalSpecialAttack_When_attackPhase_Then_DeadResultsforWarrior2() {
+        Warrior warrior1 = new Warrior("Joueur 1", 10, 10, 0, 0);
+        Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
+        warrior2.setVitality(20);
+        warrior1.specialAttack(warrior2);
+        String[] output = outContent.toString().replace("\r\n", "\n").split("\n");
+        assertEquals("Joueur 1 utilise Coup de Rage et inflige 20 dommages.", output[2]);
+        assertEquals("Joueur 2 perd 20 points de vie", output[3]);
+        assertEquals("Joueur 2 est mort", output[4]);
+        assertEquals("Joueur 1 perd 5 points de vie", output[5]);
     }
 
 }

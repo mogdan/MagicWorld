@@ -7,6 +7,7 @@ public class Character {
     private int strength;
     private int agility;
     private int intellect;
+    private boolean isDead = false;
 
     public Character(String name, int level, int strength, int agility, int intellect) {
 
@@ -23,7 +24,7 @@ public class Character {
      * Do a basicAttack
      * @return result output of the basic Attack
      */
-    public void basicAttack(Character player2){
+    public void basicAttack(Character player2) {
 
     }
 
@@ -31,7 +32,7 @@ public class Character {
      * Do a special attack
      * @return result output of the special Attack
      */
-    public void specialAttack(Character player2){
+    public void specialAttack(Character player2) {
 
     }
 
@@ -57,6 +58,14 @@ public class Character {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     public void setLevel(int level) {

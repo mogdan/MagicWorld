@@ -26,6 +26,10 @@ public class Rogue extends Character {
         player2.setVitality(player2.getVitality() - damage);
         System.out.println(getName() + " utilise " + basicAttackName + " et inflige " + damage + " dommages.");
         System.out.println(player2.getName() + " perd " + damage + " points de vie");
+        if (damage >= player2.getVitality()) {
+            player2.setDead(true);
+            System.out.println(player2.getName() + " est mort");
+        }
     }
 
     /**
@@ -40,6 +44,7 @@ public class Rogue extends Character {
         setAgility(getAgility() + dextStatModifier);
         int dextModified = getAgility();
         System.out.println(getName() + " utilise " + specialAttackName + " et passe à " + dextModified + " en agilité (+" + dextStatModifier + ").");
+
     }
 
 }
