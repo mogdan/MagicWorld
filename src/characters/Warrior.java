@@ -40,12 +40,12 @@ public class Warrior extends Character {
         setVitality(getVitality() - knockback);
         System.out.println(getName() + " utilise " + specialAttackName + " et inflige " + damage + " dommages.");
         System.out.println(player2.getName() + " perd " + damage + " points de vie");
-        if (damage >= player2.getVitality()) {
+        if (player2.getVitality() <= 0) {
             player2.setDead(true);
             System.out.println(player2.getName() + " est mort");
         }
         System.out.println(getName() + " perd " + knockback + " points de vie");
-        if (isDead() == true) {
+        if (getVitality() <= 0) {
             setDead(true);
             System.out.println(getName() + " est mort");
         }

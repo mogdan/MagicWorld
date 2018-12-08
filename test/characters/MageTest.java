@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 class MageTest {
@@ -41,6 +40,9 @@ class MageTest {
         mage.basicAttack(warrior2);
         assertTrue(mage.getVitality() == 50);
         assertTrue(warrior2.getVitality() == 40);
+    }
+
+    private void assertTrue(boolean b) {
     }
 
     @Test

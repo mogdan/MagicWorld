@@ -21,7 +21,7 @@ public class Mage extends Character {
         player2.setVitality(player2.getVitality() - damage);
         System.out.println(getName() + " utilise " + basicAttackName + " et inflige " + damage + " dommages.");
         System.out.println(player2.getName() + " perd " + damage + " points de vie");
-        if (damage >= player2.getVitality()) {
+        if (player2.getVitality() <= 0) {
             player2.setDead(true);
             System.out.println(player2.getName() + " est mort");
         }

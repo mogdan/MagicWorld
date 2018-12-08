@@ -12,7 +12,7 @@ public class Game {
 
     Scanner sc = new Scanner(System.in);
     Character[] players = new Character[2];
-    Character loser;
+
 
     /**
      * Game initializer - Characters creation
@@ -31,12 +31,12 @@ public class Game {
             String playerName = "Joueur " + (i + 1);
             System.out.println("Création du personnage du " + playerName);
             classChoice = characterSelection();
-            do {
+            do {//iterate for each stats
                 levelChoice = statSelection(0);
                 strengthChoice = statSelection(1);
                 agilityChoice = statSelection(2);
                 intellectChoice = statSelection(3);
-                int totalStats = strengthChoice + agilityChoice + intellectChoice;
+                int totalStats = strengthChoice + agilityChoice + intellectChoice; //check if sum stats equal level
                 if (totalStats != levelChoice) {
                     correctStatSelection = false;
                     System.out.println("La somme des statistiques (" + totalStats + ") ne correspond pas avec le niveau (" + levelChoice + ") du personnage. Veuillez recommencer le choix des statistiques");
@@ -58,7 +58,7 @@ public class Game {
         int classChoice = 0;
         do {
             try {
-                System.out.println("Veuillez choisir la classe de personnage du Joueur 1 (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
+                System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
                 classChoice = sc.nextInt();
                 goodInput = (classChoice >= 1 && classChoice <= 3);
             } catch (InputMismatchException e) {
@@ -132,7 +132,7 @@ public class Game {
         do {
             try {
                 System.out.println(activePlayer.getName() + " (" + activePlayer.getVitality() + " Vitalité) veuillez" +
-                        "choisir votre action ( 1: Attaque Basique , 2: Attaque Spéciale )");
+                        " choisir votre action ( 1: Attaque Basique , 2: Attaque Spéciale )");
                 attackChoice = sc.nextInt();
                 goodInput = (attackChoice == 1 || attackChoice == 2);
             } catch (InputMismatchException e) {

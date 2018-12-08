@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RogueTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -80,5 +78,6 @@ class RogueTest {
         assertEquals("Joueur 2 perd 10 points de vie", output[3]);
         assertEquals("Joueur 2 est mort", output[4]);
     }
+
 
 }

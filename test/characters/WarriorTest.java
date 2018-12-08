@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 class WarriorTest {
@@ -53,13 +52,17 @@ class WarriorTest {
     }
 
     @Test
-    public void Given_specialAttack_When_attackPhase_Then_okDmgeResults() t {
+    public void Given_specialAttack_When_attackPhase_Then_okDmgeResults() {
         Warrior warrior1 = new Warrior("Joueur 1", 10, 10, 0, 0);
         Warrior warrior2 = new Warrior("Joueur 2", 10, 10, 0, 0);
         warrior1.specialAttack(warrior2);
         assertTrue(warrior1.getVitality() == 45);
         assertTrue(warrior2.getVitality() == 30);
     }
+
+    private void assertTrue(boolean b) {
+    }
+
     @Test
     public void Given_specialAttack_When_attackPhase_Then_okTextResults() {
         Warrior warrior1 = new Warrior("Joueur 1", 10, 10, 0, 0);
